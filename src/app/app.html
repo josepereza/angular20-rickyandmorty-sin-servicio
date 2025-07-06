@@ -13,25 +13,38 @@
           (input)="onSearchInput($event)"
       >
   </div>
+@if (loading()){
 
-  <div *ngIf="loading()" class="loading">
+<div  class="loading">
       Cargando personajes del multiverso...
   </div>
+}
+  @if(error()){
 
-  <div *ngIf="error()" class="error-message">
+<div class="error-message">
       <strong>¡Oops! Algo salió mal</strong><br>
       {{ error() }}
   </div>
+  }
 
-  <div *ngIf="!loading() && !error()">
-      <div *ngIf="filteredCharacters().length === 0 && searchTerm()" class="no-results">
+  
+@if ( !loading() && !error()){
+ <div >
+    @if(filteredCharacters().length === 0 && searchTerm()){
+
+        <div  class="no-results">
           <div class="no-results-icon">🤷‍♂️</div>
           <div class="no-results-text">No se encontraron personajes</div>
           <div class="no-results-subtitle">Intenta con otro nombre</div>
       </div>
+    }
+      
+     @if(filteredCharacters().length > 0){
 
-      <div class="characters-grid" *ngIf="filteredCharacters().length > 0">
-          <div *ngFor="let character of filteredCharacters()" class="character-card">
+         <div class="characters-grid" >
+        @for (character of filteredCharacters(); track character.id) {
+
+ <div  class="character-card">
               <img 
                   [src]="character.image" 
                   [alt]="character.name"
@@ -76,6 +89,13 @@
                   </div>
               </div>
           </div>
+        }
+         
       </div>
+     }
+     
   </div>
+
+}
+ 
 </div>

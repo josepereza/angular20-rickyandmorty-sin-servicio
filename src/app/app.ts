@@ -2,7 +2,7 @@ import { Component, computed, effect, inject, signal } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { NgClass} from '@angular/common';
 interface Character {
   id: number;
   name: string;
@@ -35,7 +35,7 @@ interface ApiResponse {
   results: Character[];}
 @Component({
   selector: 'app-root',
-  imports: [NgClass, NgIf,NgFor],
+  imports: [NgClass],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
